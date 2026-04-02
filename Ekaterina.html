@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Екатерина Великая · Императрица и самодержица</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0c10;
+            color: #eef2ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* профессиональная цветовая схема: темный фон, акцент — золото/янтарь */
+        :root {
+            --bg-deep: #05070a;
+            --bg-card: #11151c;
+            --bg-elevated: #1a202c;
+            --accent-gold: #eab308;
+            --accent-gold-glow: rgba(234, 179, 8, 0.25);
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-dim: #2d3748;
+            --grad-hero: linear-gradient(135deg, #eab308 0%, #f59e0b 40%, #d97706 100%);
+        }
+
+        /* контейнер */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* секции */
+        section {
+            margin-bottom: 80px;
+        }
+
+        /* заголовки секций */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gold);
+            border-radius: 4px;
+        }
+
+        /* градиентный заголовок с эффектом прозрачности */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            background: var(--grad-hero);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+
+        .hero-sub {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 720px;
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 1.2rem;
+        }
+
+        /* карточки навыков с анимацией */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin-top: 24px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border-radius: 28px;
+            padding: 28px 20px;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 1px solid var(--border-dim);
+            backdrop-filter: blur(2px);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(234,179,8,0.2);
+            background: #131a24;
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* кейсы — выделенные блоки */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+
+        .case-item {
+            background: linear-gradient(145deg, #0f131c, #090c12);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            border-left: 5px solid var(--accent-gold);
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .case-item:hover {
+            transform: scale(1.01);
+            background: #131a24;
+            border-left-width: 6px;
+        }
+
+        .case-year {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .case-item h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .case-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* сетка инструментов в виде тегов */
+        .tools-tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: rgba(234, 179, 8, 0.12);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .tag:hover {
+            background: var(--accent-gold);
+            color: #0b0c10;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+            cursor: default;
+        }
+
+        /* акцентные элементы */
+        .accent-stat {
+            display: inline-block;
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-right: 6px;
+        }
+
+        .stat-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: var(--bg-elevated);
+            padding: 1.5rem;
+            border-radius: 2rem;
+            margin: 32px 0;
+            justify-content: space-between;
+        }
+
+        .stat-block {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        /* адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .stat-line {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .hero-sub {
+                font-size: 1rem;
+            }
+            .skill-card {
+                padding: 20px;
+            }
+        }
+
+        /* хедер */
+        .header-glow {
+            padding: 40px 0 20px 0;
+            border-bottom: 1px solid var(--border-dim);
+            margin-bottom: 48px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-dim);
+            margin-top: 60px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* визуальная иерархия */
+        .highlight {
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+
+        .quote {
+            font-style: italic;
+            border-left: 3px solid var(--accent-gold);
+            background: rgba(234,179,8,0.05);
+            padding: 1.2rem 1.8rem;
+            border-radius: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1rem;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-glow">
+        <h1 class="hero-title">Екатерина II Великая</h1>
+        <div class="hero-sub">
+            Императрица и Самодержица Всероссийская • 1762–1796<br>
+            Эпоха просвещённого абсолютизма, расширения границ и административных реформ
+        </div>
+    </div>
+
+    <!-- КАРТОЧКИ НАВЫКОВ / КЛЮЧЕВЫЕ КОМПЕТЕНЦИИ -->
+    <section>
+        <h2 class="section-title">Ключевые направления правления</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-landmark"></i></div>
+                <h3>Губернская реформа</h3>
+                <p>1775 год — создание 53 наместничеств, новая система местного управления, усиление вертикали власти и полицейского контроля.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-gavel"></i></div>
+                <h3>Уложенная комиссия</h3>
+                <p>«Наказ» императрицы — компиляция идей Монтескьё и Беккариа, попытка систематизации законов и легитимации власти.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Экономическая экспансия</h3>
+                <p>Рост экспорта хлеба, чугуна и леса, появление ассигнаций (бумажных денег), расширение внешней торговли через Чёрное море.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Образование и культура</h3>
+                <p>Основание Смольного института, Российской академии наук, сеть народных училищ, меценатство и переписка с энциклопедистами.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- СТАТИСТИЧЕСКИЕ АКЦЕНТЫ (визуальная иерархия) -->
+    <div class="stat-line">
+        <div class="stat-block"><span class="stat-number">+14 млн</span><br>прирост населения за годы правления</div>
+        <div class="stat-block"><span class="stat-number">29 губерний</span><br>образовано при Екатерине II</div>
+        <div class="stat-block"><span class="stat-number">144 города</span><br>построено или преобразовано</div>
+        <div class="stat-block"><span class="stat-number">2,6×</span><br>рост армии (до 312 тыс. чел.)</div>
+    </div>
+
+    <!-- ПРИМЕРЫ КЕЙСОВ В ВЫДЕЛЕННЫХ БЛОКАХ -->
+    <section>
+        <h2 class="section-title">Ключевые кейсы · исторические вехи</h2>
+        <div class="cases-grid">
+            <div class="case-item">
+                <div class="case-year">1762–1796</div>
+                <h4>Присоединение Новороссии и Крыма</h4>
+                <p>Выход к Чёрному морю по Кючук-Кайнарджийскому миру (1774), присоединение Крымского ханства (1783) — закрепление южных рубежей, основание Севастополя и Одессы.</p>
+            </div>
+            <div class="case-item">
+                <div class="case-year">1775</div>
+                <h4>Ликвидация Запорожской Сечи</h4>
+                <p>Упразднение казацкой вольницы, интеграция земель в губернскую систему. Войско Верных Запорожцев позже переселено на Кубань.</p>
+            </div>
+            <div class="case-item">
+                <div class="case-year">1785</div>
+                <h4>Жалованные грамоты дворянству и городам</h4>
+                <p>Окончательное оформление сословных привилегий: освобождение дворян от обязательной службы, телесных наказаний, закрепление монополии на землю и недра.</p>
+            </div>
+            <div class="case-item">
+                <div class="case-year">1772–1795</div>
+                <h4>Разделы Речи Посполитой</h4>
+                <p>Присоединение правобережной Украины, Беларуси, Литвы и Курляндии, расширение границ империи на запад на 7 млн новых подданных.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ИНСТРУМЕНТЫ/РЕФОРМЫ В ВИДЕ ТЕГОВ (СЕТКА) -->
+    <section>
+        <h2 class="section-title">Политические инструменты &amp; реформы</h2>
+        <div class="tools-tag-grid">
+            <span class="tag">Просвещённый абсолютизм</span>
+            <span class="tag">Уложенная комиссия 1767</span>
+            <span class="tag">Сенат 6 департаментов</span>
+            <span class="tag">Губернская реформа 1775</span>
+            <span class="tag">Вольное экономическое общество</span>
+            <span class="tag">Ассигнационные банки</span>
+            <span class="tag">Черта оседлости (1791)</span>
+            <span class="tag">Секуляризация церковных земель</span>
+            <span class="tag">Смольный институт</span>
+            <span class="tag">Манифест о свободе предпринимательства</span>
+            <span class="tag">Фаворитизм как институт</span>
+            <span class="tag">Новороссийская губерния</span>
+        </div>
+    </section>
+
+    <!-- БИОГРАФИЧЕСКАЯ СПРАВКА (ГЛАВНОЕ ИЗ ВИКИПЕДИИ) -->
+    <section>
+        <h2 class="section-title">Исторический портрет</h2>
+        <div style="background: var(--bg-card); border-radius: 2rem; padding: 1.8rem; border: 1px solid var(--border-dim);">
+            <p style="margin-bottom: 1rem;"><span class="highlight">София Фредерика Ангальт-Цербстская</span> родилась 2 мая 1729 года в Штеттине. В 1744 году прибыла в Россию, приняла православие и стала Екатериной Алексеевной. В 1762 году, опираясь на гвардию и братьев Орловых, совершила дворцовый переворот, свергнув мужа Петра III.</p>
+            <p style="margin-bottom: 1rem;">Екатерина II правила 34 года — период наивысшего расцвета дворянских привилегий и территориальной экспансии. При ней значительно расширены границы: присоединены Крым, Северное Причерноморье, разделы Речи Посполитой. Проведена судебная и административная реформы, выпущены ассигнации, основаны десятки городов.</p>
+            <div class="quote">
+                <i class="fas fa-quote-left" style="color: var(--accent-gold); margin-right: 8px;"></i> 
+                «Я желаю и хочу лишь блага стране, куда Бог меня привёл. Слава страны — моя собственная слава». 
+                <div style="margin-top: 8px; font-size: 0.85rem;">— из писем Екатерины II</div>
+            </div>
+            <p>Императрица вела активную переписку с Вольтером и Дидро, собирала живопись, писала комедии и мемуары. При этом эпоха ознаменовалась ужесточением крепостного права (указ о запрете крестьянам жаловаться на помещиков), коррупцией, фаворитизмом и огромными государственными расходами. К концу правления внешний долг превысил 200 млн рублей, а выпуск ассигнаций привёл к инфляции. Скончалась 17 ноября 1796 года в Зимнем дворце.</p>
+        </div>
+    </section>
+
+    <!-- ДОПОЛНИТЕЛЬНЫЕ АКЦЕНТЫ: цифры, факты (визуальная иерархия) -->
+    <section>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; background: var(--bg-elevated); border-radius: 2rem; padding: 1.5rem;">
+            <div style="flex:1; min-width: 180px;">
+                <i class="fas fa-ruble-sign" style="color: var(--accent-gold); font-size: 1.6rem;"></i>
+                <div style="font-weight:700; margin-top: 0.5rem;">Доходы бюджета</div>
+                <div>с 16 млн → 69 млн руб.</div>
+                <small style="color:var(--text-muted)">(рост более чем в 4 раза)</small>
+            </div>
+            <div style="flex:1; min-width: 180px;">
+                <i class="fas fa-ship" style="color: var(--accent-gold); font-size: 1.6rem;"></i>
+                <div style="font-weight:700; margin-top: 0.5rem;">Черноморский флот</div>
+                <div>создан с нуля, 67 лин. кораблей к 1790 г.</div>
+            </div>
+            <div style="flex:1; min-width: 180px;">
+                <i class="fas fa-chart-simple" style="color: var(--accent-gold); font-size: 1.6rem;"></i>
+                <div style="font-weight:700; margin-top: 0.5rem;">Экспорт зерна</div>
+                <div>рост до 1,3 млн руб. в год</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕТКА ИТОГОВ / НАСЛЕДИЕ -->
+    <section>
+        <h2 class="section-title">Наследие и оценки</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fas fa-balance-scale skill-icon"></i>
+                <h3>Противоречивость эпохи</h3>
+                <p>Золотой век дворянства, но пик крепостничества. Финансовый кризис и коррупция соседствовали с военными триумфами и развитием просвещения.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-globe skill-icon"></i>
+                <h3>Геополитический прорыв</h3>
+                <p>Россия окончательно закрепилась на Чёрном море, вышла к Балтике, присоединила Крым и участвовала в разделах Польши, став великой европейской державой.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-building skill-icon"></i>
+                <h3>Административная система</h3>
+                <p>Губернская реформа определила карту Российской империи почти на 150 лет. Принципы местного самоуправления действовали до революции 1917 года.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© Екатерина II Великая • Историческая справка на основе материалов Википедии • Дизайн: современный градиент, анимация карточек, адаптивная сетка</p>
+        <p style="margin-top: 8px;"><i class="fas fa-crown" style="color: var(--accent-gold);"></i> 1729–1796 • Империя • Просвещение • Реформы</p>
+    </footer>
+</div>
+</body>
+</html>
